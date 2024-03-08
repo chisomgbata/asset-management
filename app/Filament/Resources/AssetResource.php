@@ -9,8 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use App\Filament\Exports\AssetExporter;
-use Filament\Tables\Actions\ExportAction;
+
 
 class AssetResource extends Resource
 {
@@ -73,10 +72,7 @@ class AssetResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])->headerActions([
-                    ExportAction::make()
-                        ->exporter(AssetExporter::class)
-                ]);
+            ]);
 
     }
 
