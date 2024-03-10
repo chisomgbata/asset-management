@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\HardwareResource\Pages;
 use App\Filament\Resources\HardwareResource\RelationManagers;
+use App\Filament\Resources\HardwareResource\Widgets\Export;
 use App\Models\Hardware;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -112,6 +113,13 @@ class HardwareResource extends Resource
             'index' => Pages\ListHardware::route('/'),
             'create' => Pages\CreateHardware::route('/create'),
             'edit' => Pages\EditHardware::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            Export::class
         ];
     }
 

@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Workstation extends Model
 {
     use HasFactory;
+
+//    make all fields fillable
+    protected $guarded = [];
 }
