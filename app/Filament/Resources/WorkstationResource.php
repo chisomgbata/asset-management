@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\WorkstationResource\Pages;
 use App\Filament\Resources\WorkstationResource\RelationManagers;
+use App\Filament\Resources\WorkstationResource\Widgets\WorkstationExporter;
 use App\Models\Workstation;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -122,6 +123,13 @@ class WorkstationResource extends Resource
             'index' => Pages\ListWorkstations::route('/'),
             'create' => Pages\CreateWorkstation::route('/create'),
             'edit' => Pages\EditWorkstation::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            WorkstationExporter::class
         ];
     }
 }

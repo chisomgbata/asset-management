@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\HardwareResource\Pages;
 use App\Filament\Resources\HardwareResource\RelationManagers;
-use App\Filament\Resources\HardwareResource\Widgets\Export;
+use App\Filament\Resources\HardwareResource\Widgets\HardwareExporter;
 use App\Models\Hardware;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -119,7 +119,7 @@ class HardwareResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            Export::class
+            HardwareExporter::class
         ];
     }
 

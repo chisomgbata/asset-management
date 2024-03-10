@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TelephoneResource\Pages;
 use App\Filament\Resources\TelephoneResource\RelationManagers;
+use App\Filament\Resources\TelephoneResource\Widgets\TelephoneExporter;
 use App\Models\Telephone;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -88,6 +89,13 @@ class TelephoneResource extends Resource
             'index' => Pages\ListTelephones::route('/'),
             'create' => Pages\CreateTelephone::route('/create'),
             'edit' => Pages\EditTelephone::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            TelephoneExporter::class
         ];
     }
 }

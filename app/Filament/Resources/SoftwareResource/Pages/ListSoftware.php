@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\SoftwareResource\Pages;
 
-use App\Filament\Resources\HardwareResource\Widgets\Export;
+use App\Filament\Resources\SoftwareExporterResource\Widgets\SoftwareExporter;
 use App\Filament\Resources\SoftwareResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
@@ -20,10 +20,8 @@ class ListSoftware extends ListRecords
 
     protected function getHeaderWidgets(): array
     {
-        return [
-            Export::make([
-                'title' => 'Software'
-            ])
-        ];
+        return [SoftwareExporter::class];
     }
+
+
 }

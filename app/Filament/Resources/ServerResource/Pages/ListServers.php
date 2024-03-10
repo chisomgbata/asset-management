@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\ServerResource\Pages;
 
-use App\Filament\Resources\HardwareResource\Widgets\Export;
+use App\Filament\Resources\ServerExporterResource\Widgets\ServerExporter;
 use App\Filament\Resources\ServerResource;
 use Filament\Actions;
 use Filament\Pages\Concerns\ExposesTableToWidgets;
@@ -24,9 +24,7 @@ class ListServers extends ListRecords
     protected function getHeaderWidgets(): array
     {
         return [
-            Export::make(
-                ['title' => 'Servers']
-            )
+            ServerExporter::class
         ];
     }
 }

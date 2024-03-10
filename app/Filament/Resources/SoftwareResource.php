@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\HardwareResource\Widgets\Export;
+use App\Filament\Resources\SoftwareExporterResource\Widgets\SoftwareExporter;
 use App\Filament\Resources\SoftwareResource\Pages;
 use App\Filament\Resources\SoftwareResource\RelationManagers;
 use App\Models\Software;
@@ -124,7 +124,9 @@ class SoftwareResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            Export::class
+            SoftwareExporter::class
         ];
     }
+
+
 }

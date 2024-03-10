@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\ServerExporterResource\Widgets\ServerExporter;
 use App\Filament\Resources\ServerResource\Pages;
 use App\Filament\Resources\ServerResource\RelationManagers;
 use App\Models\Server;
@@ -81,6 +82,13 @@ class ServerResource extends Resource
             'index' => Pages\ListServers::route('/'),
             'create' => Pages\CreateServer::route('/create'),
             'edit' => Pages\EditServer::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            ServerExporter::class
         ];
     }
 
