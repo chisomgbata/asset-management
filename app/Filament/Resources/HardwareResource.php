@@ -10,13 +10,18 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class HardwareResource extends Resource
 {
     protected static ?string $model = Hardware::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?int $navigationSort = -2;
 
     public static function form(Form $form): Form
     {
@@ -31,6 +36,10 @@ class HardwareResource extends Resource
                 Forms\Components\TextInput::make('brand')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('owner')->options([
+                    'CCG' => 'CCG',
+                    'IPG' => 'IPG',
+                ])->required(),
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
@@ -63,6 +72,7 @@ class HardwareResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('brand')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('owner'),
                 Tables\Columns\TextColumn::make('purpose')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('oem_support_end_date')
@@ -88,7 +98,18 @@ class HardwareResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Filter::make('expired')
+                    ->query(fn(Builder $query): Builder => $query->where('eol_date', '<', now())),
+                Filter::make('expire_in_30')
+                    ->query(fn(Builder $query): Builder => $query->where('eol_date', '>', now())->where('eol_date', '<', now()->addDays(30))),
+                Filter::make('expire_in_60')
+                    ->query(fn(Builder $query): Builder => $query->where('eol_date', '>', now())->where('eol_date', '<', now()->addDays(60))),
+                SelectFilter::make('owner')
+                    ->options([
+                        'CCG' => 'CCG',
+                        'IPG' => 'IPG',
+                    ])
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

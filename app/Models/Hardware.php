@@ -10,4 +10,9 @@ class Hardware extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $casts = [
+//        $table->enum('owner', ['CCG', 'IPG'])->nullable();
+//        'owner' => 'enum:CCG,IPG'
+    ];
 }

@@ -10,4 +10,6 @@ class Software extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+
 }

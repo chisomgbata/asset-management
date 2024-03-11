@@ -2,31 +2,32 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SoftwareExporterResource\Widgets\SoftwareExporter;
 use App\Filament\Resources\SoftwareResource\Pages;
-use App\Filament\Resources\SoftwareResource\RelationManagers;
+use App\Filament\Resources\SoftwareResource\Widgets\SoftwareExporter;
 use App\Models\Software;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Pages\Concerns\ExposesTableToWidgets;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class SoftwareResource extends Resource
 {
 
-    use ExposesTableToWidgets;
-
-
     protected static ?string $model = Software::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-code-bracket';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?int $navigationSort = -2;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+
                 Forms\Components\TextInput::make('model')
                     ->required()
                     ->maxLength(255),
@@ -36,6 +37,10 @@ class SoftwareResource extends Resource
                 Forms\Components\TextInput::make('brand')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('owner')->options([
+                    'CCG' => 'CCG',
+                    'IPG' => 'IPG',
+                ])->required(),
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
@@ -54,7 +59,8 @@ class SoftwareResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('oem_renewal')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+
             ]);
     }
 
@@ -91,9 +97,20 @@ class SoftwareResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('owner'),
             ])
             ->filters([
-                //
+                Filter::make('expired')
+                    ->query(fn(Builder $query): Builder => $query->where('eol_date', '<', now())),
+                Filter::make('expire_in_30')
+                    ->query(fn(Builder $query): Builder => $query->where('eol_date', '>', now())->where('eol_date', '<', now()->addDays(30))),
+                Filter::make('expire_in_60')
+                    ->query(fn(Builder $query): Builder => $query->where('eol_date', '>', now())->where('eol_date', '<', now()->addDays(60))),
+                SelectFilter::make('owner')
+                    ->options([
+                        'CCG' => 'CCG',
+                        'IPG' => 'IPG',
+                    ])
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

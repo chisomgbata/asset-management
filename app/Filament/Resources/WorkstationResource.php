@@ -46,9 +46,7 @@ class WorkstationResource extends Resource
                 Forms\Components\TextInput::make('serial_no')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('image')
-                    ->image()
-                    ->required(),
+
                 Forms\Components\TextInput::make('model')
                     ->required()
                     ->maxLength(255),
@@ -81,7 +79,6 @@ class WorkstationResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('serial_no')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('model')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('ip_address')
