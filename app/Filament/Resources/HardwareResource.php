@@ -27,36 +27,37 @@ class HardwareResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('owner')->options([
+                    'CCG' => 'CCG',
+                    'IPG' => 'IPG',
+                ])->required(),
+                Forms\Components\TextInput::make('brand')
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('model')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('serial_number')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('brand')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Select::make('owner')->options([
-                    'CCG' => 'CCG',
-                    'IPG' => 'IPG',
-                ])->required(),
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('purpose')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('oem_support_end_date')
+                Forms\Components\DatePicker::make('oem_support_end_date')
+                ,
+
+                Forms\Components\DatePicker::make('eol_date')
                     ->required(),
+                Forms\Components\TextInput::make('oem_renewal')
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('estimated_renewal_cost')
                     ->required()
                     ->numeric(),
                 Forms\Components\TextInput::make('status')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DateTimePicker::make('eol_date')
-                    ->required(),
-                Forms\Components\TextInput::make('oem_renewal')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -66,27 +67,32 @@ class HardwareResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('owner')->placeholder('N/A')
+                ,
+
+                Tables\Columns\TextColumn::make('brand')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('model')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('serial_number')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('brand')
+                Tables\Columns\TextColumn::make('description')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('owner'),
+
                 Tables\Columns\TextColumn::make('purpose')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('oem_support_end_date')
-                    ->dateTime()
-                    ->sortable(),
+                    ->date()
+                    ->sortable()->placeholder('N/A'),
+                Tables\Columns\TextColumn::make('eol_date')
+                    ->date()
+                    ->sortable()->label('Vendor Hardware Support'),
+                Tables\Columns\TextColumn::make('oem_renewal')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('estimated_renewal_cost')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('eol_date')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('oem_renewal')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
