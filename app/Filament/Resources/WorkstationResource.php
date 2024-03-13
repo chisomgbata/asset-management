@@ -23,38 +23,27 @@ class WorkstationResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('location')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('network_id')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('proponent')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('division')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('used_by')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('status')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('sa_physical_id')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('serial_no')
-                    ->required()
                     ->maxLength(255),
 
                 Forms\Components\TextInput::make('model')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('ip_address')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('mac_address')
-                    ->required()
                     ->maxLength(255),
             ]);
     }
@@ -64,27 +53,27 @@ class WorkstationResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('location')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('network_id')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('proponent')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('division')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('used_by')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('sa_physical_id')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('serial_no')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('model')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('ip_address')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('mac_address')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

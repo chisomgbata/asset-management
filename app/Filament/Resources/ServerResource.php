@@ -24,15 +24,12 @@ class ServerResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('host_name')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('ip_address')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('owner')
-                    ->required()
                     ->maxLength(255),
             ]);
     }
@@ -42,11 +39,11 @@ class ServerResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('host_name')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('ip_address')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('owner')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

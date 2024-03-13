@@ -11,7 +11,6 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('workstations', function (Blueprint $table) {
-//            Network ID - Proponent - Division - Used By - status - SA Physical ID - Serial No. - Images Type - Model - IP address - Mac Address
             $table->id();
             $table->string('location');
             $table->string('network_id');

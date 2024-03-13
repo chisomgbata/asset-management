@@ -32,33 +32,22 @@ class HardwareResource extends Resource
                     'IPG' => 'IPG',
                 ]),
                 Forms\Components\TextInput::make('brand')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('model')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('serial_number')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description')
-                    ->required()
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('purpose')
-                    ->required()
                     ->maxLength(255),
-                Forms\Components\DatePicker::make('oem_support_end_date')
-                ,
-
-                Forms\Components\DatePicker::make('eol_date')
-                ,
+                Forms\Components\DatePicker::make('oem_support_end_date'),
+                Forms\Components\DatePicker::make('eol_date'),
                 Forms\Components\TextInput::make('oem_renewal')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('estimated_renewal_cost')
-                    ->required()
                     ->numeric(),
                 Forms\Components\TextInput::make('status')
-                    ->required()
                     ->maxLength(255),
             ]);
     }
@@ -67,20 +56,18 @@ class HardwareResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('owner')->placeholder('N/A')
-                ,
-
+                Tables\Columns\TextColumn::make('owner')->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('brand')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('model')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('serial_number')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('description')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
 
                 Tables\Columns\TextColumn::make('purpose')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('oem_support_end_date')
                     ->date()
                     ->sortable()->placeholder('N/A'),
@@ -88,12 +75,12 @@ class HardwareResource extends Resource
                     ->date()
                     ->sortable()->label('Vendor Hardware Support')->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('oem_renewal')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('estimated_renewal_cost')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

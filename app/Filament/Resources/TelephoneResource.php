@@ -23,19 +23,14 @@ class TelephoneResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('model')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('serial_number')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('ext')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('user')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('location')
-                    ->required()
                     ->maxLength(255),
             ]);
     }
@@ -45,15 +40,15 @@ class TelephoneResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('model')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('serial_number')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('ext')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('user')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('location')
-                    ->searchable(),
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
