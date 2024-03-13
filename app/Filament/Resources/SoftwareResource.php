@@ -30,7 +30,7 @@ class SoftwareResource extends Resource
                 Forms\Components\Select::make('owner')->options([
                     'CCG' => 'CCG',
                     'IPG' => 'IPG',
-                ])->required(),
+                ]),
                 Forms\Components\TextInput::make('brand')
                     ->required()
                     ->maxLength(255),
@@ -50,7 +50,7 @@ class SoftwareResource extends Resource
                 ,
 
                 Forms\Components\DatePicker::make('eol_date')
-                    ->required(),
+                ,
                 Forms\Components\TextInput::make('oem_renewal')
                     ->required()
                     ->maxLength(255),
@@ -86,7 +86,7 @@ class SoftwareResource extends Resource
                     ->sortable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('eol_date')
                     ->date()
-                    ->sortable()->label('Vendor Hardware Support'),
+                    ->sortable()->label('Vendor Hardware Support')->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('oem_renewal')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('estimated_renewal_cost')
