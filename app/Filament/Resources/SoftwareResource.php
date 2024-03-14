@@ -8,6 +8,7 @@ use App\Models\Software;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\Alignment;
 use Filament\Tables;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
@@ -45,6 +46,7 @@ class SoftwareResource extends Resource
                 Forms\Components\DatePicker::make('eol_date'),
                 Forms\Components\TextInput::make('oem_renewal')
                     ->maxLength(255),
+                Forms\Components\TextInput::make('support_level'),
                 Forms\Components\TextInput::make('estimated_renewal_cost')
                     ->numeric(),
                 Forms\Components\TextInput::make('status')
@@ -76,8 +78,11 @@ class SoftwareResource extends Resource
                     ->sortable()->label('Vendor Hardware Support')->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('oem_renewal')
                     ->searchable()->placeholder('N/A'),
+                Tables\Columns\TextColumn::make('support_level')
+                    ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('estimated_renewal_cost')
-                    ->numeric()
+                    ->money('USD')
+                    ->alignment(Alignment::End)
                     ->sortable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('status')
                     ->searchable()->placeholder('N/A'),
