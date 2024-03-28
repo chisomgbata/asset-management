@@ -66,7 +66,7 @@ class HardwareResource extends Resource
                 Tables\Columns\TextColumn::make('serial_number')
                     ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('description')
-                    ->searchable()->placeholder('N/A'),
+                    ->searchable()->placeholder('N/A')->words(5),
 
                 Tables\Columns\TextColumn::make('purpose')
                     ->searchable()->placeholder('N/A'),
@@ -102,6 +102,9 @@ class HardwareResource extends Resource
                     ->query(fn(Builder $query): Builder => $query->where('eol_date', '>', now())->where('eol_date', '<', now()->addDays(30))),
                 Filter::make('expire_in_60')
                     ->query(fn(Builder $query): Builder => $query->where('eol_date', '>', now())->where('eol_date', '<', now()->addDays(60))),
+                Filter::make('expire_in_7')
+                    ->query(fn(Builder $query): Builder => $query->where('eol_date', '<=', now()->addDays(7))),
+
                 SelectFilter::make('owner')
                     ->options([
                         'CCG' => 'CCG',
