@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SoftwareResource\Pages;
-use App\Filament\Resources\SoftwareResource\Widgets\SoftwareExporter;
-use App\Models\Software;
+use App\Filament\Resources\LicenseResource\Pages;
+use App\Filament\Resources\LicenseResource\RelationManagers;
+use App\Models\License;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,14 +15,11 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-class SoftwareResource extends Resource
+class LicenseResource extends Resource
 {
-
-    protected static ?string $model = Software::class;
+    protected static ?string $model = License::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?int $navigationSort = -2;
 
     public static function form(Form $form): Form
     {
@@ -132,18 +129,9 @@ class SoftwareResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSoftware::route('/'),
-            'create' => Pages\CreateSoftware::route('/create'),
-            'edit' => Pages\EditSoftware::route('/{record}/edit'),
+            'index' => Pages\ListLicenses::route('/'),
+            'create' => Pages\CreateLicense::route('/create'),
+            'edit' => Pages\EditLicense::route('/{record}/edit'),
         ];
     }
-
-    public static function getWidgets(): array
-    {
-        return [
-            SoftwareExporter::class
-        ];
-    }
-
-
 }

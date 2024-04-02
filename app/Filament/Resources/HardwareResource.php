@@ -33,7 +33,7 @@ class HardwareResource extends Resource
                     'IPG' => 'IPG',
                 ]),
                 Forms\Components\TextInput::make('brand')
-                    ->maxLength(255),
+                    ->maxLength(255)->label('Vendor'),
                 Forms\Components\TextInput::make('model')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('serial_number')
@@ -49,7 +49,7 @@ class HardwareResource extends Resource
                 Forms\Components\TextInput::make('support_level'),
                 Forms\Components\TextInput::make('estimated_renewal_cost')
                     ->numeric(),
-                Forms\Components\TextInput::make('status')
+                Forms\Components\Textarea::make('status')
                     ->maxLength(255),
             ]);
     }
@@ -60,7 +60,7 @@ class HardwareResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('owner')->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('brand')
-                    ->searchable()->placeholder('N/A'),
+                    ->searchable()->placeholder('N/A')->label('Vendor'),
                 Tables\Columns\TextColumn::make('model')
                     ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('serial_number')
@@ -72,7 +72,7 @@ class HardwareResource extends Resource
                     ->searchable()->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('oem_support_end_date')
                     ->date()
-                    ->sortable()->placeholder('N/A'),
+                    ->sortable()->placeholder('N/A')->since(),
                 Tables\Columns\TextColumn::make('eol_date')
                     ->date()
                     ->sortable()->label('Vendor Hardware Support')->placeholder('N/A'),
