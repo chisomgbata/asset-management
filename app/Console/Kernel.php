@@ -21,7 +21,7 @@ class Kernel extends ConsoleKernel
             $software->notifyExpiry();
             $hardware = new Hardware();
             $hardware->notifyExpiry();
-        })->everyMinute();
+        })->everySixHours();
     }
 
     /**
