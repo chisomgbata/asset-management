@@ -55,6 +55,6 @@ class PanelPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])->plugin(FilamentShieldPlugin::make()
-            )->maxContentWidth(MaxWidth::Full);
+            )->maxContentWidth(MaxWidth::Full)->sidebarFullyCollapsibleOnDesktop();
     }
 }
