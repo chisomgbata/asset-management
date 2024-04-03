@@ -97,13 +97,13 @@ class HardwareResource extends Resource
             ])
             ->filters([
                 Filter::make('expired')
-                    ->query(fn(Builder $query): Builder => $query->where('eol_date', '<', now())),
+                    ->query(fn(Builder $query): Builder => $query->where('oem_support_end_date', '<', now())),
                 Filter::make('expire_in_30')
-                    ->query(fn(Builder $query): Builder => $query->where('eol_date', '>', now())->where('eol_date', '<', now()->addDays(30))),
+                    ->query(fn(Builder $query): Builder => $query->where('oem_support_end_date', '>', now())->where('eol_date', '<', now()->addDays(30))),
                 Filter::make('expire_in_60')
-                    ->query(fn(Builder $query): Builder => $query->where('eol_date', '>', now())->where('eol_date', '<', now()->addDays(60))),
+                    ->query(fn(Builder $query): Builder => $query->where('oem_support_end_date', '>', now())->where('eol_date', '<', now()->addDays(60))),
                 Filter::make('expire_in_7')
-                    ->query(fn(Builder $query): Builder => $query->where('eol_date', '<=', now()->addDays(7))),
+                    ->query(fn(Builder $query): Builder => $query->where('oem_support_end_date', '<=', now()->addDays(7))),
 
                 SelectFilter::make('owner')
                     ->options([
